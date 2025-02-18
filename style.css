@@ -1,0 +1,17 @@
+.color_done {
+  color: green;
+  text-decoration: line-through;
+}
+
+.color_task {
+  color: orange;
+}
+
+ul {
+  list-style: none;
+}
+
+li {
+  display: flex;
+  gap: 1rem;
+}
