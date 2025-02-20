@@ -48,7 +48,7 @@ function sortedList() {
       return -1;
     }
   });
-  console.log("list to show", listToShow);
+  console.log("list to show", listToShow); //SLETTE?
   showToDo(listToShow);
 }
 
@@ -58,7 +58,7 @@ function showToDo(listToShow) {
   listToShow.forEach((task) => {
     const li = document.createElement("li"); //Oprettet elementet li
 
-    li.innerHTML += `<input type="checkbox" ${task.done ? "checked" : ""} class="mark_toggle_done"><div><h3>${task.text}</h3><p>${task.subtext}</p></div><h5 class="delete">x</h5>`; //Skriver li ud i dommen – Hvis done = true sættes attributen checked (flueben) på input feltet, eller fjernes atributten
+    li.innerHTML += `<input type="checkbox" ${task.done ? "checked" : ""} class="mark_toggle_done"><div><h3>${task.text}</h3><p>${task.subtext}</p></div><span class="delete">x</span>`; //Skriver li ud i dommen – Hvis done = true sættes attributen checked (flueben) på input feltet, eller fjernes atributten
     li.classList.add(task.done ? "color_done" : "color_task"); //Hvis done = true addes klassen color_done ellers tilføjes klassen color_task
 
     li.addEventListener("click", (evt) => {
@@ -69,10 +69,12 @@ function showToDo(listToShow) {
       console.log("current target", currentTarget);
       console.log("target", target);
 
-      //Opdatere listen
       if (target.classList.contains("delete")) {
         document.querySelector("dialog").showModal();
+        document.querySelector(".nej").addEventListener("click", sortedList());
         document.querySelector(".ja").addEventListener("click", removeTask);
+
+        //funktion som fjerner element fra arrayet og dommen
         function removeTask() {
           const taskId = task.id;
           const index = toDoArray.findIndex((item) => item.id === taskId);
@@ -86,10 +88,15 @@ function showToDo(listToShow) {
       }
 
       if (target.classList.contains("mark_toggle_done")) {
-        task.done = !task.done; //Gør den til det modsatte af hvad den er true/false
+        task.done = !task.done; // Skift mellem true/false
 
-        //Kalder funkionen
-        sortedList();
+        if (task.done) {
+          li.classList.add("task_done_animation"); // Tilføj animation når den bliver true
+          li.addEventListener("animationend", () => sortedList());
+        } else {
+          li.classList.add("task_not_done_animation"); // Tilføj animation når den bliver false
+          li.addEventListener("animationend", () => sortedList());
+        }
       }
     });
     toDoListQsl.appendChild(li); //Append til html liste
