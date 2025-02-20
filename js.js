@@ -12,7 +12,6 @@ document.querySelector(".input_text").addEventListener("keydown", function (even
     addTaskToList();
   }
 });
-
 document.querySelector(".input_subtext").addEventListener("keydown", function (event) {
   if (event.key === "Enter") {
     event.preventDefault();
@@ -48,21 +47,19 @@ function sortedList() {
       return -1;
     }
   });
-  console.log("list to show", listToShow); //SLETTE?
   showToDo(listToShow);
 }
 
 function showToDo(listToShow) {
-  toDoListQsl.innerHTML = ""; //Fjerner gamle liste for dommen, så det opdaterede kan vises
+  toDoListQsl.innerHTML = ""; //Fjerner gamle liste for DOM'en, så det opdaterede kan vises
 
   listToShow.forEach((task) => {
     const li = document.createElement("li"); //Oprettet elementet li
 
-    li.innerHTML += `<input type="checkbox" ${task.done ? "checked" : ""} class="mark_toggle_done"><div><h3>${task.text}</h3><p>${task.subtext}</p></div><span class="delete">x</span>`; //Skriver li ud i dommen – Hvis done = true sættes attributen checked (flueben) på input feltet, eller fjernes atributten
+    li.innerHTML += `<input type="checkbox" ${task.done ? "checked" : ""} class="mark_toggle_done"><div><h3>${task.text}</h3><p>${task.subtext}</p></div><span class="delete">x</span>`; //Skriver li ud i DOM'en – Hvis done = true sættes attributen checked (flueben) på input feltet, eller fjernes atributten
     li.classList.add(task.done ? "color_done" : "color_task"); //Hvis done = true addes klassen color_done ellers tilføjes klassen color_task
 
     li.addEventListener("click", (evt) => {
-      //Eventlistener klik på task
       const currentTarget = evt.currentTarget;
       const target = evt.target;
 
@@ -74,7 +71,7 @@ function showToDo(listToShow) {
         document.querySelector(".nej").addEventListener("click", sortedList());
         document.querySelector(".ja").addEventListener("click", removeTask);
 
-        //funktion som fjerner element fra arrayet og dommen
+        //funktion som fjerner element fra arrayet og DOM'en
         function removeTask() {
           const taskId = task.id;
           const index = toDoArray.findIndex((item) => item.id === taskId);
