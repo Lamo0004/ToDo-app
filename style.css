@@ -1,17 +1,154 @@
-.color_done {
-  color: green;
-  text-decoration: line-through;
+body {
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande", "Lucida Sans", Arial, sans-serif;
 }
 
-.color_task {
-  color: orange;
+h1 {
+  font-size: 2.5rem;
+  text-align: center;
+  padding-top: 1rem;
+  margin: 0rem;
+  color: rgb(9, 41, 77);
+}
+
+h3 {
+  font-size: 1.5rem;
+  color: rgb(9, 41, 77);
+  margin: 0;
+}
+
+p {
+  font-size: 1rem;
+  color: rgb(9, 41, 77);
+  margin: 0;
+}
+
+.delete {
+  color: rgb(155, 23, 23);
+  font-size: 1.5rem;
+  cursor: pointer;
+  margin: 0;
+}
+
+article {
+  max-width: 600px;
+  height: 750px;
+  margin-inline: auto;
+  margin-top: 2rem;
+  background-color: rgb(47, 119, 197);
+  border-radius: 3rem;
+  box-shadow: 1rem 1rem rgba(9, 41, 77, 0.236);
+  display: flex;
+  flex-direction: column;
+  border: 1px solid rgb(9, 41, 77);
 }
 
 ul {
-  list-style: none;
+  list-style: none; /* Fjerner punkter */
+  padding: 0;
+  margin-inline: 1rem;
+  height: 600px;
+  overflow-y: auto; /* Scrollbar vises kun, hvis nødvendigt */
 }
 
 li {
-  display: flex;
+  border-bottom: 1px solid rgb(9, 41, 77);
+  display: grid;
+  grid-template-columns: 1fr 10fr 1fr;
   gap: 1rem;
+  align-items: center;
+  padding: 0.5rem;
+}
+
+:checked {
+  color: brown;
+}
+
+form {
+  display: flex;
+  gap: 5px;
+  margin: auto;
+  padding-bottom: 2rem;
+}
+
+.input_subtext,
+.input_text {
+  border: 1px solid rgb(9, 41, 77);
+  border-radius: 4px;
+  background-color: rgba(183, 215, 246, 0.63);
+  padding: 0.5rem;
+  margin-block: 1rem;
+}
+
+input::placeholder {
+  font-style: italic;
+}
+
+.input_button {
+  cursor: pointer;
+  height: 3rem;
+  width: 3rem;
+  border-radius: 4px;
+  font-size: 2rem;
+  background-color: rgba(183, 215, 246);
+  color: rgb(9, 41, 77);
+  border: 1px solid rgb(9, 41, 77);
+  box-shadow: 4px 4px rgba(9, 41, 77, 0.4);
+  margin: 0.5rem;
+}
+
+.color_done {
+  animation: fadeOut 0.5s ease-in-out;
+  background-color: rgba(183, 215, 246, 0.63);
+}
+
+.color_task {
+  background-color: rgb(183, 214, 246);
+}
+
+/* Animation */
+@keyframes fadeOut {
+  from {
+    transform: translateY(0%);
+    background-color: rgb(183, 214, 246);
+  }
+  to {
+    transform: translateY(100%);
+    background-color: rgba(183, 215, 246, 0.63);
+  }
+}
+
+.ja {
+  cursor: pointer;
+  border-radius: 4px;
+  font-size: 1rem;
+  padding-inline: 1rem;
+  padding-block: 0.5rem;
+  background-color: rgb(42, 121, 76);
+  color: rgb(183, 214, 246);
+  border: 1px solid rgb(9, 41, 77);
+  box-shadow: 4px 4px rgba(9, 41, 77, 0.4);
+}
+
+.nej {
+  cursor: pointer;
+  border-radius: 4px;
+  font-size: 1rem;
+  padding-inline: 1rem;
+  padding-block: 0.5rem;
+  background-color: rgb(136, 40, 40);
+  color: rgb(183, 214, 246);
+  border: 1px solid rgb(9, 41, 77);
+  box-shadow: 4px 4px rgba(9, 41, 77, 0.4);
+}
+
+dialog {
+  background-color: rgba(183, 215, 246);
+  border: 1px solid rgb(9, 41, 77);
+  border-radius: 1.5rem;
+}
+
+.warningButtons {
+  gap: 2rem;
+  place-content: center;
+  margin-top: 1rem;
 }

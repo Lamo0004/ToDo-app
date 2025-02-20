@@ -10,8 +10,23 @@
 </head>
 
 <body>
-    <h1>To Do list</h1>
-    <ul class="to_do_list"></ul>
+    <article>
+        <h1>To Do list</h1>
+        <ul class="to_do_list"></ul>
+
+        <form>
+            <input type="text" placeholder="Title" class="input_text" required>
+            <input type="text" placeholder="Details (optional)" class="input_subtext">
+            <input type="button" value="+" class="input_button"></input>
+        </form>
+    </article>
+    <dialog>
+        <p>Er du sikker på, at du vil slette denne opgave?</p>
+        <form method="dialog" class="warningButtons">
+            <button class="nej">Nej</button>
+            <button class="ja">Ja</button>
+        </form>
+    </dialog>
 </body>
 
 </html>
